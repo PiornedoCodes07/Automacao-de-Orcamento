@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lincon Car</title>
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/responsive.css">
+    <script src="src/javascript/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+    <picture>
+        <img draggable="false" src="/src/img/logo_jean.PNG" alt="logo">
+    </picture>
+    <div class="container">
+        <h1>Gerar Orçamento</h1>
+        <!--FORM-->
+        <form id="orcamentoForm">
+            <label for="nome">Nome do cliente:</label>
+            <input type="text" id="nome" name="nome" >
+
+            <label for="nome">Telefone do cliente:</label>
+            <input type="text" id="telefone" name="telefone" >
+
+            <label for="nome">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" >
+
+            <label for="nome">Veículo:</label>
+            <input type="text" id="veiculo" name="veiculo" >
+
+            <label for="nome">Placa:</label>
+            <input type="text" id="placa" name="placa" >
+
+            <label for="nome">Cor:</label>
+            <input type="text" id="cor" name="cor" >
+
+            <label for="nome">Ano do Veículo:</label>
+            <input type="number" id="ano" name="ano" >
+
+            <label for="data">Data do orçamento:</label>
+            <input type="date" id="data" name="data" >
+
+         
+
+            <!--BOARD DE ITENS-->
+            <div id="board"></div>
+            <button class="btnAdd" type="button" id="addItemBtn">Adicionar Item</button>
+            <!--BOTAO SUBMIT-->
+            <button class="btnAdd" type="submit">Gerar PDF</button>
+        </form>
+    </div>
+</body>
+
+
+</html>
