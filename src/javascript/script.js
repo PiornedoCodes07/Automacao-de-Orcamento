@@ -40,8 +40,13 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     desc.type = 'text';
     desc.placeholder = 'Descrição';
     desc.required = true;
-    desc.style.width = '50%';
+    desc.style.width = '60%';
     desc.setAttribute('id', 'descricao')
+
+    // Responsividade
+    if (window.innerWidth <= 768) {
+        desc.style.width = '50%';
+    }
     
 
 
@@ -50,7 +55,7 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     valor.type = 'number';
     valor.placeholder = 'Valor';
     valor.required = true;
-    valor.style.width = '20%';
+    valor.style.width = '15%';
     valor.setAttribute('id', 'price')
     valor.step = '0.01';
 

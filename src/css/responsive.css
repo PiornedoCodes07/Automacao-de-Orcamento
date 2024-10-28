@@ -1,0 +1,8 @@
+@media (max-width:750px){
+    .container{
+        width: 100%;
+    }
+    .removeBtn{
+        width: 2.5rem;
+    }
+}
