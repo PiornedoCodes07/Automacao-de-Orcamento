@@ -8,7 +8,7 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     const options = [
         { label: "Teto" },
         { label: "Capô" },
-        { label: "Porta Mala" },
+        { label: "Tampa Traseira" },
         { label: "Para-Choque D." },
         { label: "Para-Choque T." },
         { label: "Para-lama E" },
@@ -17,12 +17,18 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
         { label: "Porta D" },
         { label: "Porta Traseira E." },
         { label: "Porta Traseira D." },
+        { label: "Torpedo E" },
+        { label: "Torpedo D" },
+        { label: "Caixa de Ar E" },
+        { label: "Caixa de Ar D" },
         { label: "Lateral E" },
         { label: "Lateral D" },
         { label: "Soleira E" },
         { label: "Soleira D" },
         { label: "Painel D" },
+        { label: "Painel Interno D" },
         { label: "Painel T" },
+        { label: "Painel Interno T" },
 
     ];
 
