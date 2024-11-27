@@ -70,6 +70,12 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
 
     const item = document.createElement('div');
     item.classList.add('item');
+    
+    // Ícone de arraste
+    const dragIcon = document.createElement('span');
+    dragIcon.classList.add('drag-icon');
+    dragIcon.innerHTML = '&#8597;'; // Ícone de arraste
+
     const desc = document.createElement('input');
     desc.type = 'text';
     desc.placeholder = 'Descrição';
@@ -101,6 +107,7 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
         atualizarTotal(); // Atualiza o total ao remover o item
     });
 
+    item.appendChild(dragIcon);
     item.appendChild(select);
     item.appendChild(desc);
     item.appendChild(valor);
@@ -109,6 +116,12 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     document.getElementById('board').appendChild(item);
 
     atualizarTotal(); // Atualiza o total após adicionar um novo item
+});
+
+// Tornar o board de itens arrastável
+new Sortable(document.getElementById('board'), {
+    handle: '.drag-icon', // Define o ícone de arraste como o manipulador
+    animation: 150, // Animação suave ao arrastar
 });
 
 // Função principal do formulário
