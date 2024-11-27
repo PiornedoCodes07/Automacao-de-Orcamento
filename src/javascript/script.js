@@ -1,3 +1,20 @@
+// Função para formatar o número de telefone
+function formatPhoneNumber(phoneNumber) {
+    // Remove todos os caracteres que não sejam números
+    const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+
+    // Verifica se o número tem o tamanho correto
+    const match = cleaned.match(/^(\d{2})(\d{5})(\d{4})$/);
+
+    // Se o número for válido, retorna no formato (99) 99999-9999
+    if (match) {
+        return `(${match[1]}) ${match[2]}-${match[3]}`;
+    }
+
+    // Retorna o número original se a formatação falhar
+    return phoneNumber;
+}
+
 // Função que cria item no Board
 document.getElementById("addItemBtn").addEventListener("click", function () {
     // Substituindo o campo de descrição por um select com opções predefinidas
@@ -39,7 +56,6 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
         optionElement.text = opt.label;
         select.appendChild(optionElement);
     });
-    ////////////////////////////////////////////
 
     const item = document.createElement('div');
     item.classList.add('item');
@@ -48,14 +64,12 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     desc.placeholder = 'Descrição';
     desc.required = true;
     desc.style.width = '60%';
-    desc.setAttribute('id', 'descricao')
+    desc.setAttribute('id', 'descricao');
 
     // Responsividade
     if (window.innerWidth <= 768) {
         desc.style.width = '50%';
     }
-    
-
 
     // Exibir o preço automaticamente baseado na opção selecionada
     const valor = document.createElement('input');
@@ -63,7 +77,7 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     valor.placeholder = 'Valor';
     valor.required = true;
     valor.style.width = '15%';
-    valor.setAttribute('id', 'price')
+    valor.setAttribute('id', 'price');
     valor.step = '0.01';
 
     const removeBtn = document.createElement('button');
@@ -81,13 +95,14 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     document.getElementById('board').appendChild(item);
 });
 
-// Função principal do formulario
+// Função principal do formulário
 document.getElementById("orcamentoForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Pegando os inputs
     const nome = document.getElementById("nome").value;
     const telefone = document.getElementById("telefone").value;
+    const telefoneFormatado = formatPhoneNumber(telefone);
     const endereco = document.getElementById("endereco").value;
     const veiculo = document.getElementById("veiculo").value;
     const placa = document.getElementById("placa").value.toUpperCase();
@@ -97,9 +112,6 @@ document.getElementById("orcamentoForm").addEventListener("submit", function (ev
     const [ano, mes, dia] = data.split('-');
     const datebr = `${dia}/${mes}/${ano}`;
 
-    // Pegando valores do input do boarde somando: 
-
-    //////////////////
     let totalOrcamento = 0;
     // Pegando valores do input do board
     const items = [];
@@ -107,11 +119,9 @@ document.getElementById("orcamentoForm").addEventListener("submit", function (ev
         const peca = itemDiv.querySelector("select").selectedOptions[0].text;
         const descricao = itemDiv.querySelector("input[id= 'descricao']").value;
         const price = parseFloat(itemDiv.querySelector("input[id='price']").value);
-        items.push({peca,descricao,price})
-        totalOrcamento += price
-       
+        items.push({peca, descricao, price});
+        totalOrcamento += price;
     });
-    //////////////////////////////////
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
@@ -128,27 +138,22 @@ document.getElementById("orcamentoForm").addEventListener("submit", function (ev
         doc.setFontSize(12);
 
         // Dados do Cliente
-      
         doc.text(8, 60, nome);
         doc.text(8, 67, endereco);
-        doc.text(8, 74, telefone);
+        doc.text(8, 74, telefoneFormatado);
         // Dados do Veículo
         doc.text(35, 89, veiculo);
         doc.text(81, 89, placa);
         doc.text(128, 89, cor);
         doc.text(173, 89, ano_v);
-        // Descrição
 
-        // DATA :
+        // DATA
         doc.setFontSize(14);
         doc.setTextColor(255, 255, 255);
         doc.setFont("Helvetica", "bold");
         doc.text(165, 49, datebr);
 
-
-
         let ypos = 110;
-        //Posição Y inicial para os itens
         items.forEach(item => {
             doc.setFontSize(12);
             doc.setFont("Helvetica");
@@ -157,16 +162,13 @@ document.getElementById("orcamentoForm").addEventListener("submit", function (ev
             doc.text(57, ypos, item.descricao);
             doc.text(175, ypos, item.price.toString());
             ypos += 7;
-           
-            
-            
         });
 
-        //Adicionando o valor total de todos os itens do orçamento
+        // Adicionando o valor total de todos os itens do orçamento
         doc.setTextColor(255, 255, 255);
         doc.setFontSize(14);
-        doc.text(160, 220, totalOrcamento.toString()); // Exibindo o total do orçamento
-       
+        doc.text(160, 220, totalOrcamento.toString());
+
         doc.save(`Orcamento_${nome}.pdf`);
     };
 });
