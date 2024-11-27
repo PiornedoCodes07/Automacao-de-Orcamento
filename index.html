@@ -31,39 +31,43 @@
         <!--FORM-->
         <form id="orcamentoForm">
             <label for="nome">Nome do cliente:</label>
-            <input type="text" id="nome" name="nome" >
+            <input type="text" id="nome" name="nome">
 
             <label for="telefone">Telefone do cliente:</label>
-            <input type="text" id="telefone" name="telefone" >
+            <input type="text" id="telefone" name="telefone">
 
             <label for="nome">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" >
+            <input type="text" id="endereco" name="endereco">
 
             <label for="nome">Veículo:</label>
-            <input type="text" id="veiculo" name="veiculo" >
+            <input type="text" id="veiculo" name="veiculo">
 
             <label for="nome">Placa:</label>
-            <input type="text" id="placa" name="placa" >
+            <input type="text" id="placa" name="placa">
 
             <label for="nome">Cor:</label>
-            <input type="text" id="cor" name="cor" >
+            <input type="text" id="cor" name="cor">
 
             <label for="nome">Ano do Veículo:</label>
-            <input type="number" id="ano" name="ano" >
+            <input type="number" id="ano" name="ano">
 
             <label for="data">Data do orçamento:</label>
-            <input type="date" id="data" name="data" >
-
-         
+            <input type="date" id="data" name="data">
 
             <!--BOARD DE ITENS-->
             <div id="board"></div>
+
+            <!-- Exibição do Total -->
+            <div>
+                <strong>Total do Orçamento: R$ <span id="totalOrcamento">0.00</span></strong>
+            </div>
+
+            <!--BOTÃO PARA ADICIONAR ITEM-->
             <button class="btnAdd" type="button" id="addItemBtn">Adicionar Item</button>
-            <!--BOTAO SUBMIT-->
+            <!--BOTÃO SUBMIT-->
             <button class="btnAdd" type="submit">Gerar PDF</button>
         </form>
     </div>
 </body>
-
 
 </html>

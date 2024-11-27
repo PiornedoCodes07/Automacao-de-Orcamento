@@ -15,6 +15,18 @@ function formatPhoneNumber(phoneNumber) {
     return phoneNumber;
 }
 
+// Função para atualizar o total
+function atualizarTotal() {
+    let total = 0;
+    // Pegando todos os valores inseridos nos campos de preço
+    document.querySelectorAll("#board .item input[id='price']").forEach(function (input) {
+        const valor = parseFloat(input.value) || 0; // Caso o campo esteja vazio, considere 0
+        total += valor;
+    });
+    // Exibir o total no HTML
+    document.getElementById('totalOrcamento').textContent = total.toFixed(2);
+}
+
 // Função que cria item no Board
 document.getElementById("addItemBtn").addEventListener("click", function () {
     // Substituindo o campo de descrição por um select com opções predefinidas
@@ -47,7 +59,6 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
         { label: "Painel T" },
         { label: "Painel Interno T" },
         { label: "Peças" }
-
     ];
 
     options.forEach(opt => {
@@ -80,11 +91,14 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     valor.setAttribute('id', 'price');
     valor.step = '0.01';
 
+    valor.addEventListener('input', atualizarTotal); // Atualiza o total em tempo real
+
     const removeBtn = document.createElement('button');
     removeBtn.classList.add('removeBtn');
     removeBtn.textContent = 'x';
     removeBtn.addEventListener('click', function () {
         item.remove();
+        atualizarTotal(); // Atualiza o total ao remover o item
     });
 
     item.appendChild(select);
@@ -93,6 +107,8 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     item.appendChild(removeBtn);
 
     document.getElementById('board').appendChild(item);
+
+    atualizarTotal(); // Atualiza o total após adicionar um novo item
 });
 
 // Função principal do formulário
@@ -117,9 +133,9 @@ document.getElementById("orcamentoForm").addEventListener("submit", function (ev
     const items = [];
     document.querySelectorAll("#board .item").forEach(function (itemDiv) {
         const peca = itemDiv.querySelector("select").selectedOptions[0].text;
-        const descricao = itemDiv.querySelector("input[id= 'descricao']").value;
+        const descricao = itemDiv.querySelector("input[id='descricao']").value;
         const price = parseFloat(itemDiv.querySelector("input[id='price']").value);
-        items.push({peca, descricao, price});
+        items.push({ peca, descricao, price });
         totalOrcamento += price;
     });
 
