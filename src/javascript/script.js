@@ -198,6 +198,6 @@ document.getElementById("orcamentoForm").addEventListener("submit", function (ev
         doc.setFontSize(14);
         doc.text(160, 220, totalOrcamento.toString());
 
-        doc.save(`Orcamento_${nome}.pdf`);
+        doc.save(`Orcamento_${nome} ${data}.pdf`);
     };
 });
