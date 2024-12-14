@@ -142,6 +142,7 @@ document
     const cor = document.getElementById("cor").value;
     const ano_v = document.getElementById("ano").value;
     const data = document.getElementById("data").value;
+    const obs = document.getElementById("obs").value;
     const [ano, mes, dia] = data.split("-");
     const datebr = `${dia}/${mes}/${ano}`;
 
@@ -192,6 +193,12 @@ document
       doc.text(81, 89, placa);
       doc.text(128, 89, cor);
       doc.text(173, 89, ano_v);
+      // Observações
+      doc.setFontSize(12);
+      doc.setTextColor(255, 49, 50);
+      doc.setFont("Helvetica", "bold");
+      const obsFormat = doc.splitTextToSize(obs, 89);
+      doc.text(120, 263, obsFormat);
 
       // DATA
       doc.setFontSize(14);
