@@ -1,3 +1,43 @@
+// Função para salvar os dados no sessionStorage
+function salvarDadosFormulario() {
+  const formData = {
+    nome: document.getElementById("nome").value,
+    telefone: document.getElementById("telefone").value,
+    endereco: document.getElementById("endereco").value,
+    veiculo: document.getElementById("veiculo").value,
+    placa: document.getElementById("placa").value,
+    cor: document.getElementById("cor").value,
+    ano: document.getElementById("ano").value,
+    data: document.getElementById("data").value,
+    obs: document.getElementById("obs").value
+  };
+  sessionStorage.setItem("formOrcamento", JSON.stringify(formData));
+}
+
+// Função para restaurar os dados do sessionStorage
+function restaurarDadosFormulario() {
+  const savedData = JSON.parse(sessionStorage.getItem("formOrcamento"));
+  if (savedData) {
+    document.getElementById("nome").value = savedData.nome || "";
+    document.getElementById("telefone").value = savedData.telefone || "";
+    document.getElementById("endereco").value = savedData.endereco || "";
+    document.getElementById("veiculo").value = savedData.veiculo || "";
+    document.getElementById("placa").value = savedData.placa || "";
+    document.getElementById("cor").value = savedData.cor || "";
+    document.getElementById("ano").value = savedData.ano || "";
+    document.getElementById("data").value = savedData.data || "";
+    document.getElementById("obs").value = savedData.obs || "";
+  }
+}
+
+// Adicionar eventos de input para salvar os dados automaticamente
+document.querySelectorAll("#orcamentoForm input").forEach(function (input) {
+  input.addEventListener("input", salvarDadosFormulario);
+});
+
+// Restaurar dados quando a página for carregada
+window.addEventListener("load", restaurarDadosFormulario);
+
 // Função para formatar o número de telefone
 function formatPhoneNumber(phoneNumber) {
   // Remove todos os caracteres que não sejam números
