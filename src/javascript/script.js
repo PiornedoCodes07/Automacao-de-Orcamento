@@ -101,6 +101,9 @@ document.getElementById("addItemBtn").addEventListener("click", function () {
     { label: "Painel T" },
     { label: "Painel Interno T" },
     { label: "Peças" },
+    { label: "Nota Fiscal" },
+    { label: "Rodas" },
+    { label: "Outros" },
   ];
 
   options.forEach((opt) => {
